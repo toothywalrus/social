@@ -39,6 +39,10 @@ INSTALLED_APPS = (
     'south',
 )
 
+INSTALLED_APPS += (
+    'people',
+)
+
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -63,6 +67,10 @@ DATABASES = {
     }
 }
 
+TEMPLATE_DIRS = (
+    os.path.join(BASE_DIR, 'templates'),
+)
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
 
@@ -83,3 +91,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 AUTH_USER_MODEL = 'people.SocialUser'
+
+try:
+    from local_settings import *
+except ImportError:
+    pass

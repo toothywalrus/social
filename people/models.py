@@ -1,9 +1,9 @@
 from django.db import models
-from django.conf import settings.
+from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.contrib.contenttypes.models import ContentType
-from django.contrib.contenttypes.fields import GenericForeignKey
-from django.contrib.contenttyps.generic import GenericRelation
+from django.contrib.contenttypes.generic import GenericRelation,\
+    GenericForeignKey
 
 from core.models import TimeStampedModel
 
@@ -20,8 +20,8 @@ class SocialUser(AbstractUser):
 
 
 class Message(TimeStampedModel):
-    sender = models.ForeignKey(user_model, related_name='messages')
-    recipient = models.ForeignKey(user_model, related_name='messages')
+    sender = models.ForeignKey(user_model, related_name='sent_messages')
+    recipient = models.ForeignKey(user_model, related_name='received_messages')
     content = models.TextField()
 
 
