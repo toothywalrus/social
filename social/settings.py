@@ -43,6 +43,7 @@ INSTALLED_APPS += (
     'people',
 )
 
+
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -96,3 +97,7 @@ try:
     from local_settings import *
 except ImportError:
     pass
+
+from core.utils import autoregister
+
+autoregister('people')
