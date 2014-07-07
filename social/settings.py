@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+MAIN_DIR = os.path.abspath(os.path.dirname(__file__))
 
 
 # Quick-start development settings - unsuitable for production
@@ -37,9 +38,11 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'south',
     'rest_framework',
+    'pipeline',
 )
 
 INSTALLED_APPS += (
+    'social',
     'people',
     'core',
 )
@@ -98,15 +101,44 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
-STATIC_ROOT = 'staticfiles'
+STATIC_ROOT = os.path.join(MAIN_DIR, 'staticfiles')
 
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(MAIN_DIR, 'static'),
 )
 
+STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
+
 AUTH_USER_MODEL = 'people.SocialUser'
+
+PIPELINE_ENABLED = True
+
+STATICFILES_FINDERS = (
+    'pipeline.finders.FileSystemFinder',
+    'pipeline.finders.AppDirectoriesFinder',
+    'pipeline.finders.PipelineFinder',
+    'pipeline.finders.CachedFileFinder',
+)
+
+PIPELINE_CSS = {
+    'libs': {
+        'source_filenames': (
+            'bower_components/angularjs/src/css/*.css',
+        ),
+        'output_filename': 'css/libs.min.css',
+    }
+}
+
+PIPELINE_JS = {
+    'libs': {
+        'source_filenames': (
+            'bower_components/angularjs/src/js/bootstrap.js',
+        ),
+        'output_filename': 'js/libs.min.js',
+    }
+}
 
 try:
     from local_settings import *

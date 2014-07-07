@@ -1,0 +1,17 @@
+{% load staticfiles compressed %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    {% block static %}
+        {% compressed_css 'libs' %}
+        {% compressed_js 'libs' %}
+    {% endblock static %}
+</head>
+<body>
+    {% block body %}
+        
+    {% endblock body %}
+</body>
+</html>
