@@ -15,7 +15,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '_bf75$9p11_tl3i6#ok9z1_15amjr#^ozf6_8@2as^@r1t0mi8'
 
@@ -42,6 +41,7 @@ INSTALLED_APPS = (
 
 INSTALLED_APPS += (
     'people',
+    'core',
 )
 
 
@@ -112,7 +112,3 @@ try:
     from local_settings import *
 except ImportError:
     pass
-
-from core.utils import autoregister
-
-autoregister('people')

@@ -1,1 +1,3 @@
-from django.contrib import admin
+from core.utils import autoregister
+
+autoregister('people')
