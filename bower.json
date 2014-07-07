@@ -1,0 +1,8 @@
+{
+  "name": "social",
+  "version": "0.1.0",
+  "dependencies": {
+    "angularjs": "latest",
+    "bootstrap": "~3.1.1"
+  }
+}

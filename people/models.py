@@ -16,13 +16,18 @@ class SocialUser(AbstractUser):
     # languages
     # city
     # skype
-    skype = models.CharField(max_length=32)
+    skype = models.CharField(max_length=32, null=False, blank=True)
+    followers = models.ManyToManyField(
+        'self', related_name='followees', symmetrical=False)
 
 
 class Message(TimeStampedModel):
     sender = models.ForeignKey(user_model, related_name='sent_messages')
     recipient = models.ForeignKey(user_model, related_name='received_messages')
     content = models.TextField()
+
+    def __unicode__(self):
+        return "{}".format(self.content[:100])
 
 
 class Post(TimeStampedModel):
@@ -40,3 +45,11 @@ class Like(models.Model):
     content_type = models.ForeignKey(ContentType)
     object_id = models.PositiveIntegerField()
     what = GenericForeignKey('content_type', 'object_id')
+
+    def __unicode__(self):
+        return "{}'s like for {} with id {}".format(self.who,
+                                                    str(self.content_type).capitalize(), self.object_id)
+
+
+class Activity(models.Model):
+    pass
