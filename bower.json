@@ -2,6 +2,10 @@
   "name": "social",
   "version": "0.1.0",
   "dependencies": {
-    "angularjs": "latest"
+    "angularjs": "latest",
+    "bower": "latest"
+  },
+  "scripts": {
+    "postinstall": "./node_modules/bower/bin/bower install"
   }
 }

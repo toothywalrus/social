@@ -113,7 +113,6 @@ STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
 
 AUTH_USER_MODEL = 'people.SocialUser'
 
-PIPELINE_ENABLED = True
 
 STATICFILES_FINDERS = (
     'pipeline.finders.FileSystemFinder',
@@ -122,12 +121,28 @@ STATICFILES_FINDERS = (
     'pipeline.finders.CachedFileFinder',
 )
 
+
+try:
+    from local_settings import *
+except ImportError:
+    pass
+
+PIPELINE = not DEBUG
+
+PIPELINE_STORAGE = 'pipeline.storage.PipelineFinderStorage'
+
 PIPELINE_CSS = {
     'libs': {
         'source_filenames': (
             'bower_components/angularjs/src/css/*.css',
         ),
         'output_filename': 'css/libs.min.css',
+    },
+    'app': {
+        'source_filenames': (
+            'css/app/*.css',
+        ),
+        'output_filename': 'css/app.min.css',
     }
 }
 
@@ -137,10 +152,11 @@ PIPELINE_JS = {
             'bower_components/angularjs/src/js/bootstrap.js',
         ),
         'output_filename': 'js/libs.min.js',
+    },
+    'app': {
+        'source_filenames': (
+            'js/app/*.js',
+        ),
+        'output_filename': 'js/app.min.js',
     }
 }
-
-try:
-    from local_settings import *
-except ImportError:
-    pass

@@ -1,5 +1,48 @@
 {% extends "base.html" %}
 
 {% block body %}
-    <h1>Hello, this is homepage.</h1>
+    
+    <nav class="top-bar" data-topbar>
+        <ul class="title-area">
+            <li class="name">
+                <h1><a href="#">My Site</a></h1>
+            </li>
+            <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+        </ul>
+
+        <section class="top-bar-section">
+            <ul class="right">
+                <li class="active"><a href="#">Right Button</a></li>
+                <li class="has-dropdown">
+                    <a href="#">Right Button Dropdown</a>
+                    <ul class="dropdown">
+                        <li><a href="#">First link in dropdown</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <ul class="left">
+                <li><a href="#">Left Nav Button</a></li>
+            </ul>
+        </section>
+    </nav>
+
+    {% verbatim %}
+        <div ng-app="social" class="main-content">
+            <div ng-controller="MainCtrl" class="row">
+                
+                <ul class="small-block-grid-2">
+                    <li ng-repeat="user in users">
+                        <div class="avatar">
+                            <img class="th" src="/static/img/no_avatar.jpg" alt="">
+                        </div>
+                        <div class="user-info">
+                            <h3>{{ user.first_name }} {{ user.last_name }}</h3>
+                        </div>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    {% endverbatim %}
 {% endblock body %}

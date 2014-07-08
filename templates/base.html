@@ -4,10 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-    {% block static %}
-        {% compressed_css 'libs' %}
-        {% compressed_js 'libs' %}
-    {% endblock static %}
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/foundation/5.3.0/css/normalize.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/foundation/5.3.0/css/foundation.min.css">
+    <script src="//cdn.jsdelivr.net/foundation/5.3.0/js/vendor/jquery.js"></script>
+    <script src="//cdn.jsdelivr.net/foundation/5.3.0/js/vendor/fastclick.js"></script>
+    <script src="//cdn.jsdelivr.net/foundation/5.3.0/js/vendor/modernizr.js"></script>
+    <script src="//cdn.jsdelivr.net/foundation/5.3.0/js/vendor/placeholder.js"></script>
+    <script src="//cdn.jsdelivr.net/foundation/5.3.0/js/foundation.min.js"></script>
+    <script src="//cdn.jsdelivr.net/foundation/5.3.0/js/foundation/foundation.dropdown.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
+    {% compressed_js 'app' %}
+    {% compressed_css 'app' %}
 </head>
 <body>
     {% block body %}
