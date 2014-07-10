@@ -5,44 +5,57 @@
     <nav class="top-bar" data-topbar>
         <ul class="title-area">
             <li class="name">
-                <h1><a href="#">My Site</a></h1>
+                <h1><a href="#">Social</a></h1>
             </li>
             <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
         </ul>
-
-        <section class="top-bar-section">
-            <ul class="right">
-                <li class="active"><a href="#">Right Button</a></li>
-                <li class="has-dropdown">
-                    <a href="#">Right Button Dropdown</a>
-                    <ul class="dropdown">
-                        <li><a href="#">First link in dropdown</a></li>
-                    </ul>
-                </li>
-            </ul>
-
-            <ul class="left">
-                <li><a href="#">Left Nav Button</a></li>
-            </ul>
-        </section>
     </nav>
 
     {% verbatim %}
-        <div ng-app="social" class="main-content">
-            <div ng-controller="MainCtrl" class="row">
-                
-                <ul class="small-block-grid-2">
-                    <li ng-repeat="user in users">
-                        <div class="avatar">
+    <div ng-app="social" class="main-content">
+
+        <script type="text/ng-template" id="templates/user-list.html">
+            <ul class="small-block-grid-4">
+                <li ng-repeat="user in users">
+                    <div class="avatar">
+                        <a href="#user/{{ user.id }}">
                             <img class="th" src="/static/img/no_avatar.jpg" alt="">
-                        </div>
-                        <div class="user-info">
-                            <h3>{{ user.first_name }} {{ user.last_name }}</h3>
-                        </div>
-                    </li>
-                </ul>
+                        </a>
+                    </div>
+                    <div class="user-info">
+                        <span>{{ user.first_name }} {{ user.last_name }}</span>
+                    </div>
+                </li>
+            </ul>
+        </script>
+
+        <script type="text/ng-template" id="templates/user.html">
+            <div>
+            {{ user.first_name }}
+            {{ user.last_name }}
+            {{ user.email }}
+            </div>
+        </script>
+
+        <div ng-controller="MainCtrl" class="container" role="main">
+
+            <div class="row">
+            
+                <div class="small-3 columns">
+                    <nav>
+                        <ul class="side-nav">
+                            <li><a href="#users">Users</a></li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <div class="small-9 columns">
+                    <div ui-view></div>
+                </div>
 
             </div>
         </div>
+
+    </div>
     {% endverbatim %}
 {% endblock body %}

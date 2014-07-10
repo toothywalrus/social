@@ -18,7 +18,7 @@ class SocialUser(AbstractUser):
     # skype
     skype = models.CharField(max_length=32, null=False, blank=True)
     followers = models.ManyToManyField(
-        'self', related_name='followees', symmetrical=False)
+        'self', related_name='followees', symmetrical=False, null=True)
 
 
 class Message(TimeStampedModel):
