@@ -1,0 +1,19 @@
+<h1>Friend List</h1>
+
+<ul class="list-content">
+    <li class="user-block" ng-repeat="user in users">
+        <div class="avatar-thumb">
+            <a href="#/profile/{{user.id}}" class="avatar-thumb">
+                <img src="/images/yeoman.png" alt="">
+            </a>
+        </div>
+        <div class="info">
+            <a class="username" href="#/profile/{{user.id}}">{{ user.first_name }} {{ user.last_name }}</a>
+            <span class="success round label">Online</span>
+        </div>
+        <div class="actions">
+            <a href="#/message">Send a message</a>
+            <a href="">Remove from friends</a>
+        </div>
+    </li>
+</ul>

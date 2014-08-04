@@ -4,7 +4,7 @@ from django.core.urlresolvers import reverse_lazy
 
 from rest_framework import viewsets
 
-from .models import SocialUser
+from .models import SocialUser, Message
 
 
 class HomePageView(TemplateView):
@@ -17,3 +17,7 @@ class HomePageRedirectView(RedirectView):
 
 class UserViewSet(viewsets.ModelViewSet):
     model = SocialUser
+
+
+class MessageViewSet(viewsets.ModelViewSet):
+    model = Message

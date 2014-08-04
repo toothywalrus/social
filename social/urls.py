@@ -3,13 +3,15 @@ from django.contrib import admin
 
 from rest_framework import routers
 
-from people.views import HomePageView, UserViewSet, HomePageRedirectView
+from people.views import HomePageView, UserViewSet, HomePageRedirectView,\
+    MessageViewSet
 
 
 admin.autodiscover()
 
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
+router.register(r'messages', MessageViewSet)
 
 urlpatterns = patterns('',
                        url(r'^$', HomePageRedirectView.as_view()),

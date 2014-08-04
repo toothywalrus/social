@@ -4,3 +4,6 @@
 bower_components
 venv
 staticfiles
+node_modules
+build
+.*

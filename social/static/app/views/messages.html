@@ -1,0 +1,19 @@
+<h1>Messages</h1>
+
+<ul class="list-content">
+    <li class="message-block row" ng-repeat="message in messages">
+        <div class="small-4 columns">
+            <div class="avatar-thumb">
+                <a href="#/profile/{{user.id}}" class="avatar-thumb">
+                    <img src="/images/yeoman.png" alt="">
+                </a>
+            </div>
+            <div class="info">
+                <a class="username" href="#/profile/{{user.id}}">Andrey Zarubin</a>
+            </div>
+        </div>
+        <div class="small-8 columns">
+            <div class="content">{{ message.content }}</div>
+        </div>
+    </li>
+</ul>
