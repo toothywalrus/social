@@ -14,4 +14,5 @@ angular.module('tryApp')
       'AngularJS',
       'Karma'
     ];
+    console.log("hello");
   });

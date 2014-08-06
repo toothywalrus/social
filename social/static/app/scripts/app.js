@@ -52,6 +52,51 @@ angular
         redirectTo: '/'
       });
 
+      console.log('hello');
+
+      // var interceptor = function($q, $rootScope, Auth) {
+      //   return {
+      //     'response': function(resp) {
+      //       if (resp.config.url == '/api/login') {
+      //         Auth.setToken(resp.data.token);
+      //       }
+      //     },
+      //     'responseError': function(rejection) {
+      //       switch(rejection.status) {
+      //         case 401:
+      //           if (rejection.config.url !== 'api/login')
+      //             $rootScope.$broadcast('auth:loginRequired');
+      //           break;
+      //         case 403:
+      //           $rootScope.$broadcast('auth:forbidden');
+      //           break;
+      //         case 404:
+      //           $rootScope.$broadcast('page:notFound');
+      //           break;
+      //         case 500:
+      //           $rootScope.$broadcast('server:error');
+      //           break;
+      //       }
+
+      //       return $q.reject(rejection);
+      //     }
+      //   };
+      // };
+
+      //$httpProvider.interceptors.push(interceptor);
+
       RestangularProvider.setBaseUrl('/api');
       RestangularProvider.setDefaultHttpFields({cache: true});
   });
+  // .run(function($rootScope, $location, Auth) {
+  //   $rootScope.$on('$routeChangeStart', function(evt, next, curr) {
+  //     if (!Auth.isAuthorized(next.access_level)) {
+  //       if (Auth.isLoggedIn()) {
+  //         $location.path('/');
+  //       } else {
+  //         $location.path('/login');
+  //       }
+  //     }
+  //   });
+  // });
+

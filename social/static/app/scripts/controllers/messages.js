@@ -1,6 +1,8 @@
+'use strict';
+
 angular.module('tryApp')
   .controller('MessageListCtrl', function ($scope, Restangular) {
-    Restangular.all('messages').getList()
+    Restangular.one('users', 1).getList('messages')
     .then(function(messages) {
         $scope.messages = messages;
     });
