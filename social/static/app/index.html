@@ -20,52 +20,52 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <!-- Add your site or application content here -->
-<!--     <div class="container">
-  <div class="header">
-    <ul class="nav nav-pills pull-right">
-      <li class="active"><a ng-href="#">Home</a></li>
-      <li><a ng-href="#/about">About</a></li>
-      <li><a ng-href="#">Contact</a></li>
-    </ul>
-    <button class="left">Save</button>
-    <button class="button right">Save</button>
-    <h3 class="text-muted">try</h3>
-  </div>
+    <div auth-application>
+    </div>
 
-  <div ng-view=""></div>
+    <div id="login-failed">
+      <h3>Sorry, username or password is wrong. Try again.</h3>
+    </div>
 
-  <div class="footer">
-    <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
-  </div>
-</div> -->
-
-    <nav class="top-bar" data-topbar>
-      <ul class="title-area">
-        <li class="name">
-          <h1><a href="#">Social</a></h1>
-        </li>
-      </ul>
-    </nav>
-
-    <div class="row">
-      <div class="small-2 columns">
-        <nav class="sidebar">
-          <ul class="side-nav">
-            <li>
-              <a href="#/me">My Profile</a>
-              <a href="#/friends">My Friends</a>
-              <a href="#/messages">My Messages</a>
-              <a href="#/feed">My Feed</a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-      <div class="small-10 columns">
-        <div class="mainbar" ng-view></div>
+    <div id="login-holder">
+      <div class="row">
+            <div id="login-failed">
+          <h3>Sorry, username or password is wrong. Try again.</h3>
+        </div>
+        <h1>Login, please!</h1>
+        <div login></div>
       </div>
     </div>
 
+
+    <div id="main">
+
+      <nav class="top-bar" data-topbar>
+        <ul class="title-area">
+          <li class="name">
+            <h1><a href="#">Social</a></h1>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="row">
+        <div class="small-2 columns">
+          <nav class="sidebar">
+            <ul class="side-nav">
+              <li>
+                <a href="#/me">My Profile</a>
+                <a href="#/friends">My Friends</a>
+                <a href="#/messages">My Messages</a>
+                <a href="#/feed">My Feed</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <div class="small-10 columns">
+          <div class="mainbar" ng-view></div>
+        </div>
+      </div>
+    </div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -104,6 +104,7 @@
     <script src="bower_components/jquery-placeholder/jquery.placeholder.js"></script>
     <script src="bower_components/foundation/js/foundation.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/angular-http-auth/src/http-auth-interceptor.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -117,6 +118,8 @@
         <script src="scripts/controllers/messages.js"></script>
         <script src="scripts/services/auth.js"></script>
         <script src="scripts/services/access_levels.js"></script>
+        <script src="scripts/directives/authapplication.js"></script>
+        <script src="scripts/directives/login.js"></script>
         <!-- endbuild -->
 </body>
 </html>

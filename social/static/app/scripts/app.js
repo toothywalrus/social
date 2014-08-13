@@ -16,43 +16,49 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'restangular'
+    'restangular',
+    'http-auth-interceptor'
   ])
-  .config(function ($routeProvider, RestangularProvider) {
+  .config(function ($httpProvider, $routeProvider, RestangularProvider, ACCESS_LEVELS) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        controller: 'MainCtrl',
+        access_level: ACCESS_LEVELS.pub,
       })
       .when('/me', {
         templateUrl: 'views/profile.html',
-        controller: 'ProfileCtrl'
+        controller: 'ProfileCtrl',
+        access_level: ACCESS_LEVELS.user
       })
       .when('/profile/:userID', {
         templateUrl: 'views/profile.html',
-        controller: 'ProfileCtrl'
+        controller: 'ProfileCtrl',
+        access_level: ACCESS_LEVELS.pub
       })
       .when('/message/', {
         templateUrl: 'views/message.html',
-        controller: 'SendMessageCtrl'
+        controller: 'SendMessageCtrl',
+        access_level: ACCESS_LEVELS.user
       })
       .when('/messages', {
         templateUrl: 'views/messages.html',
-        controller: 'MessageListCtrl'
+        controller: 'MessageListCtrl',
+        access_level: ACCESS_LEVELS.user
       })
       .when('/about', {
         templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
+        controller: 'AboutCtrl',
+        access_level: ACCESS_LEVELS.user
       })
       .when('/friends', {
         templateUrl: 'views/friends.html',
-        controller: 'FriendListCtrl'
+        controller: 'FriendListCtrl',
+        access_level: ACCESS_LEVELS.user
       })
       .otherwise({
         redirectTo: '/'
       });
-
-      console.log('hello');
 
       // var interceptor = function($q, $rootScope, Auth) {
       //   return {
@@ -87,16 +93,23 @@ angular
 
       RestangularProvider.setBaseUrl('/api');
       RestangularProvider.setDefaultHttpFields({cache: true});
+  })
+  .run(function($cookieStore, $rootScope, $location, $http) {
+    if ($cookieStore.get('djangotoken')) {
+      $http.defaults.headers.common['Authorization'] = 'Token ' + $cookieStore.get('djangotoken');
+      document.getElementById('main').style.display = 'block';
+    } else {
+      document.getElementById('login-holder').style.display = 'block';
+    }
+
+    // $rootScope.$on('$routeChangeStart', function(evt, next, curr) {
+    //   if (!Auth.isAuthorized(next.access_level)) {
+    //     if (Auth.isLoggedIn()) {
+    //       $location.path('/');
+    //     } else {
+    //       $location.path('/login');
+    //     }
+    //   }
+    // });
   });
-  // .run(function($rootScope, $location, Auth) {
-  //   $rootScope.$on('$routeChangeStart', function(evt, next, curr) {
-  //     if (!Auth.isAuthorized(next.access_level)) {
-  //       if (Auth.isLoggedIn()) {
-  //         $location.path('/');
-  //       } else {
-  //         $location.path('/login');
-  //       }
-  //     }
-  //   });
-  // });
 

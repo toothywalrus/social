@@ -1,9 +1,12 @@
 from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.generic import GenericRelation,\
     GenericForeignKey
+from rest_framework.authtoken.models import Token
 
 from core.models import TimeStampedModel
 
@@ -19,6 +22,13 @@ class SocialUser(AbstractUser):
     skype = models.CharField(max_length=32, null=False, blank=True)
     followers = models.ManyToManyField(
         'self', related_name='followees', symmetrical=False, null=True)
+
+
+@receiver(post_save, sender=SocialUser)
+def create_auth_token(sender, instance=None, created=False, **kwargs):
+    ''' Creates token whenever a SocialUser is created '''
+    if created:
+        Token.objects.create(user=instance)
 
 
 class Message(TimeStampedModel):

@@ -26,8 +26,18 @@ class MessageViewSet(viewsets.ModelViewSet):
 
 class UserMessageListView(generics.ListAPIView):
     model = Message
+    permission_classes = (permissions.IsAdminUser,)
 
     def get_queryset(self):
         queryset = super(UserMessageListView, self).get_queryset()
-        curr_user = SocialUser.objects.get(pk=1)
-        return queryset.filter(Q(sender=curr_user) | Q(recipient=curr_user))
+        user_id = self.kwargs['user_id']
+        return queryset.filter(Q(sender=user_id) | Q(recipient=user_id))
+
+
+class OwnerMessageListView(generics.ListAPIView):
+    model = Message
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get_queryset(self):
+        queryset = super(OwnerMessageListView, self).get_queryset()
+        return queryset.filter(Q(sender=self.request.user) | Q(recipient=self.request.user))

@@ -13,7 +13,8 @@
     "angular-route": "1.2.16",
     "restangular": "~1.4.0",
     "foundation": "~5.3.0",
-    "angular-ui-router": "~0.2.10"
+    "angular-ui-router": "~0.2.10",
+    "angular-http-auth": "https://github.com/witoldsz/angular-http-auth.git#~1.2.1"
   },
   "devDependencies": {
     "angular-mocks": "1.2.16",

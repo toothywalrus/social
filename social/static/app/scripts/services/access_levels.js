@@ -8,7 +8,7 @@
  * Constant in the tryApp.
  */
 angular.module('tryApp')
-  .constant('ACCESSLEVELS', {
+  .constant('ACCESS_LEVELS', {
     pub: 1,
-    priv: 2
+    user: 2
   });

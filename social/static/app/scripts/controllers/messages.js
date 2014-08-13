@@ -2,7 +2,7 @@
 
 angular.module('tryApp')
   .controller('MessageListCtrl', function ($scope, Restangular) {
-    Restangular.one('users', 1).getList('messages')
+    Restangular.all('messages').getList()
     .then(function(messages) {
         $scope.messages = messages;
     });
