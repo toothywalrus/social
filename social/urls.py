@@ -5,7 +5,8 @@ from rest_framework import routers
 from rest_framework.urlpatterns import format_suffix_patterns
 
 from people.views import HomePageView, UserViewSet, HomePageRedirectView,\
-    MessageViewSet, UserMessageListView, OwnerMessageListView
+    MessageViewSet, UserMessageListView, OwnerMessageListView, UserConversationList,\
+    OwnerConversationList, OwnerBulkConversationsList
 
 
 admin.autodiscover()
@@ -18,7 +19,18 @@ user_urls = patterns('',
                      url(r'^/(?P<user_id>\d+)/messages$',
                          UserMessageListView.as_view(
                          ), name='usermessage-list'),
+                     url(r'^/(?P<user_id>\d+)/messages/(?P<companion_id>\d+)$',
+                         UserConversationList.as_view(
+                         ), name='userconversation-list'),
                      )
+
+me_urls = patterns('',
+                   url(r'^/conversations/$', OwnerBulkConversationsList.as_view(),
+                       name='ownerbulkconversation-list'),
+                   url(r'^/conversations/(?P<companion_id>\d+)/$', OwnerConversationList.as_view(),
+                       name='ownerconversation-list'),
+
+                   )
 
 message_urls = patterns('',
                         url(r'^$', OwnerMessageListView.as_view(),
@@ -37,6 +49,7 @@ urlpatterns = patterns('',
 urlpatterns += patterns('',
                         url(r'^api/users', include(user_urls)),
                         url(r'^api/messages', include(message_urls)),
+                        url(r'^api/me', include(me_urls)),
                         )
 
 urlpatterns += patterns('',

@@ -2,8 +2,5 @@
 
 angular.module('tryApp')
   .controller('MessageListCtrl', function ($scope, Restangular) {
-    Restangular.all('messages').getList()
-    .then(function(messages) {
-        $scope.messages = messages;
-    });
+    $scope.conversations = Restangular.oneUrl('me').all('conversations').getList().$object;
   });

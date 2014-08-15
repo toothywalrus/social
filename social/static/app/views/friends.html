@@ -10,6 +10,7 @@
         <div class="info">
             <a class="username" href="#/profile/{{user.id}}">{{ user.first_name }} {{ user.last_name }}</a>
             <span class="success round label">Online</span>
+            <span ng-show="user.is_staff" class="alert round label">Staff</span>
         </div>
         <div class="actions">
             <a href="#/message">Send a message</a>

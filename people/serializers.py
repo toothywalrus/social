@@ -10,7 +10,7 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ('id', 'username', "skype")
 
 
-class Message(serializers.ModelSerializer):
+class MessageSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Message
